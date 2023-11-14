@@ -3,7 +3,7 @@ import defineAction from '../../../../helpers/define-action';
 export default defineAction({
   arguments: [
     {
-      description: 'The number to send the SMS from.',
+      description: 'The number to initiate the call from. Must be verified.',
       key: 'fromNumber',
       label: 'From Number',
       required: false,
@@ -11,7 +11,7 @@ export default defineAction({
       variables: true,
     },
     {
-      description: 'The number to send the SMS to.',
+      description: 'The phone number for calling.',
       key: 'toNumber',
       label: 'To Number',
       required: true,
@@ -19,7 +19,7 @@ export default defineAction({
       variables: true,
     },
     {
-      description: 'The message to send.',
+      description: 'The message to convert to speech.',
       key: 'message',
       label: 'Message',
       required: true,
@@ -27,9 +27,9 @@ export default defineAction({
       variables: true,
     },
   ],
-  description: 'Sends an SMS',
-  key: 'sendSms',
-  name: 'Send an SMS',
+  description: 'Makes a text-to-speech call',
+  key: 'sendVoice',
+  name: 'Make a text-to-speech call',
 
   async run($) {
     const text = $.step.parameters.message as string;
@@ -46,7 +46,7 @@ export default defineAction({
     }
     if (from?.length) params.from = from
 
-    const response = await $.http.post('/sms', params);
+    const response = await $.http.post('/voice', params);
 
     $.setActionItem({ raw: response.data });
   },

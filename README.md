@@ -13,6 +13,7 @@ You need an [API key](https://help.seven.io/en/api-key-access) in order to make 
 
 ### Actions
 - sendSMS
+- sendVoice
 
 ### Triggers
 - receiveSMS
